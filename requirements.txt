@@ -9,7 +9,6 @@ Jinja2==2.10
 lxml==4.2.1
 MarkupSafe==1.0
 oauthlib==2.0.7
-pkg-resources==0.0.0
 post==1.0.1
 public==1.0.2
 query-string==1.0.1
