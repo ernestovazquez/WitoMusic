@@ -39,4 +39,4 @@ def inicio():
 
 
 if __name__ == '__main__':
-  run(host='0.0.0.0',port=argv[1])
+	app.run('0.0.0.0', debug=True)
