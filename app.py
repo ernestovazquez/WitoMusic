@@ -17,17 +17,17 @@ token_url = "https://accounts.spotify.com/api/token"
 
 
 def token_valido():
-  token=request.get_cookie("token", secret='some-secret-key')
-  if token:
-    token_ok = True
-    try:
-      oauth2 = OAuth2Session(client_id, token=token)
-      r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
-    except TokenExpiredError as e:
-      token_ok = False
-  else:
-    token_ok = False
-  return token_ok
+	token=request.get_cookie("token", secret='some-secret-key')
+	if token:
+		token_ok = True
+		try:
+			oauth2 = OAuth2Session(client_id, token=token)
+			r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
+		except TokenExpiredError as e:
+			token_ok = False
+	else:
+		token_ok = False
+	return token_ok
 
 
 
@@ -38,5 +38,5 @@ def inicio():
 
 
 
-if __name__ == '__main__':
-	app.run('0.0.0.0', debug=True)
+port=os.environ["PORT"]
+	app.run('0.0.0.0',int(port), debug=True)
