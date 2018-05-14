@@ -31,7 +31,7 @@ def token_valido():
 
 
 
-@app.route('/',methods=["GET","POST"])
+@route('/',methods=["GET","POST"])
 def inicio():
 	return render_template('index.html')
 
@@ -39,4 +39,4 @@ def inicio():
 
 
 if __name__ == '__main__':
-	app.run('0.0.0.0', 5000, debug=True)
+	run('0.0.0.0', debug=True)
