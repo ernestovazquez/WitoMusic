@@ -9,10 +9,10 @@
 		<title>WitoMusic</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="shortcut icon" href="images/favicon.png"/>
-		<link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.png')}}"/>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<noscript><link rel="stylesheet" href="{{url_for('static', filename='css/noscript.css')}}" /></noscript>
 	</head>
 	<body>
 
@@ -35,7 +35,7 @@
 							<ul>
 								<li><a href="#intro">Intro</a></li>
 								<li><a href="#buscadores">Buscadores</a></li>
-								<li><a href="#playlist">Playlist</a></li>
+								<li><a href="/playlist">Playlist</a></li>
 								<li><a href="#contacto">Contacto</a></li>
 								<!--<li><a href="#elements">Elements</a></li>-->
 							</ul>
@@ -45,28 +45,45 @@
 				<!-- Main -->
 					<div id="main">
 
+
+
+
+
 						<!-- Intro -->
 							<article id="intro">
 								<h2 class="major">Intro</h2>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<span class="image main"><img src="{{url_for('static', filename='images/pic01.jpg')}}" alt="" /></span>
 								<p>- Sincronizar tu cuenta de spotify para tus playlists que posteriormente puedes escuchar desde la pagina web de spotify online. </p>
 								<p>- La aplicación saldrá una serie de buscadores con las opciones de buscar por artista, álbum, canción...</p>
                                 <p>- El poder crear una lista de reproducción es un opción.</p>
 							</article>
 
+
+
+
+
 						<!-- Work -->
 							<article id="buscadores">
 								<h2 class="major">Buscadores</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+								<span class="image main"><img src="{{url_for('static', filename='images/pic02.jpg')}}" alt="" /></span>
 								<p>En este apartado podemos encontrar un buscador con las opciones de buscar por artista, álbum, canción...</p>
 							</article>
+
+
+
+
 
 						<!-- About -->
 							<article id="playlist">
 								<h2 class="major">Playlist</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
+								<span class="image main"><img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="" /></span>
 								<p>Sincroniza tu cuenta de spotify para poder disfrutar de tus playlist y poder escucharlo en el web online.</p>
 							</article>
+
+
+
+
+
 
 						<!-- Contact -->
 							<article id="contacto">
@@ -109,9 +126,9 @@
 			<div id="bg"></div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+			<script src="{{url_for('static', filename='js/skel.min.js')}}"></script>
+			<script src="{{url_for('static', filename='js/util.js')}}"></script>
+			<script src="{{url_for('static', filename='js/main.js')}}"></script>
 	</body>
 </html>
