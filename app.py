@@ -29,45 +29,22 @@ def token_valido():
 	return token_ok
 
 
-@app.route('/callback', method='GET')
-def get_token():
-  oauth2 = OAuth2Session(client_id, state=request.cookies.oauth_state,redirect_uri=redirect_uri)
-  token = oauth2.fetch_token(token_url, client_secret=client_secret,authorization_response=request.url)
-  response.set_cookie("token", token,secret='some-secret-key')
-  redirect("#playlist")
-
-@app.route('#playlist', method='GET')
-def personal():
-	token = request.get_cookie("token", secret='some-secret-key')
-	tokens = token["token_type"]+" "+token["access_token"]
-	headers = {"Accept":"aplication/json","Authorization":tokens}
-	perfil = requests.get("https://api.spotify.com/v1/me", headers=headers)
-	if perfil.status_code == 200:
-		cuenta = perfil.json()
-		cuenta = cuenta["id"]
-		url_playlists = "https://api.spotify.com/v1/users/"+str(cuenta)+"/playlists"
-	listas = requests.get(url_playlists, headers=headers)
-	if listas.status_code == 200:
-		playlists_usuario = json.loads(listas.text)
-		return template('playlist.tpl', listas_usuario=playlists_usuario)
-
-
 @app.route('/',methods=["GET","POST"])
 def inicio():
 	return render_template('index.html')
 
 
-@app.route('/',methods=["GET","POST"])
+@app.route('/search',methods=["GET","POST"])
 def search():
 	return render_template('buscadores.html')
 
 
-@app.route('/',methods=["GET","POST"])
+@app.route('/contact',methods=["GET","POST"])
 def contact():
-	return render_template('contact.html')
+	return render_template('contacto.html')
 
 
-@app.route('/',methods=["GET","POST"])
+@app.route('/playlist',methods=["GET","POST"])
 def playlist():
 	return render_template('playlist.html')
 

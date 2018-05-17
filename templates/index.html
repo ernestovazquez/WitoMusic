@@ -27,7 +27,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="{{url_for(inicio)}}" class="logo"><strong>Ernesto Vázquez García</strong> 1º ASIR</a>
+									<a href="{{url_for('inicio')}}" class="logo"><strong>Ernesto Vázquez García</strong> 1º ASIR</a>
 									<ul class="icons">
                                         <li><a href="https://twitter.com/Azork68" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 									   <li><a href="https://open.spotify.com/artist/38M50K62fGv3u0XmMuLUWR" class="icon fa-spotify"><span class="label">Spotify</span></a></li>
@@ -69,27 +69,27 @@
 											</ul>
 										</article>
 										<article>
-											<a href="{{url_for(search)}}" class="image"><img src="{{url_for('static', filename='images/pic02.jpg')}}" alt="" /></a>
+											<a href="{{url_for('search')}}" class="image"><img src="{{url_for('static', filename='images/pic02.jpg')}}" alt="" /></a>
 											<h3>Buscadores</h3>
 											<p>En este apartado podemos encontrar un buscador con las opciones de buscar por artista, álbum, canción...</p>
 											<ul class="actions">
-												<li><a href="{{url_for(search)}}" class="button">Continuar leyendo »</a></li>
+												<li><a href="{{url_for('search')}}" class="button">Continuar leyendo »</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="{{url_for(playlist)}}" class="image"><img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="" /></a>
-											<h3>Playlist</h3>
+											<a href="{{url_for('playlist')}}" class="image"><img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="" /></a>
+											<h3>Playlists</h3>
 											<p>Sincroniza tu cuenta de spotify para poder disfrutar de tus playlist y poder escucharlo en el web online.</p>
 											<ul class="actions">
-												<li><a href="{{url_for(playlist)}}" class="button">Continuar leyendo »</a></li>
+												<li><a href="{{url_for('playlist')}}" class="button">Continuar leyendo »</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="{{url_for(contact)}}" class="image"><img src="{{url_for('static', filename='images/contacto.jpg')}}" alt="" /></a>
+											<a href="{{url_for('contact')}}" class="image"><img src="{{url_for('static', filename='images/contacto.jpg')}}" alt="" /></a>
 											<h3>Contacto</h3>
 											<p></p>
 											<ul class="actions">
-												<li><a href="{{url_for(contact)}}" class="button">Continuar leyendo »</a></li>
+												<li><a href="{{url_for('contact')}}" class="button">Continuar leyendo »</a></li>
 											</ul>
 										</article>
 									</div>
@@ -110,10 +110,10 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="{{url_for(inicio)}}">Inicio</a></li>
-										<li><a href="{{url_for(search)}}">Buscadores</a></li>
-                                        <li><a href="{{url_for(playlist)}}">Playlist</a></li>
-										<li><a href="{{url_for(contact)}}">Contacto</a></li>
+										<li><a href="{{url_for('inicio')}}">Inicio</a></li>
+										<li><a href="{{url_for('search')}}">Buscadores</a></li>
+                                        <li><a href="{{url_for('playlist')}}">Playlist</a></li>
+										<li><a href="{{url_for('contact')}}">Contacto</a></li>
 									</ul>
 								</nav>
                             
