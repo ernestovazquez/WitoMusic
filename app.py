@@ -29,7 +29,7 @@ def token_valido():
 	return token_ok
 
 
-@app.route('/',methods=["GET","POST"])
+@app.route('/')
 def inicio():
 	return render_template('index.html')
 
@@ -39,12 +39,12 @@ def search():
 	return render_template('buscadores.html')
 
 
-@app.route('/contact',methods=["GET","POST"])
+@app.route('/contact')
 def contact():
 	return render_template('contacto.html')
 
 
-@app.route('/playlist',methods=["GET","POST"])
+@app.route('/playlist')
 def playlist():
 	return render_template('playlist.html')
 
