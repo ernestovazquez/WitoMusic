@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <!--
-	Dimension by HTML5 UP
+	Editorial by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
@@ -10,120 +10,134 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.png')}}"/>
+
+		<!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<noscript><link rel="stylesheet" href="{{url_for('static', filename='css/noscript.css')}}" /></noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<span class="icon fa-diamond"></span>
-						</div>
-						<div class="content">
-							<div class="inner">
-								<h1>WitoMusic</h1>
-								<p>Buscador de música por artista, álbum o por canciones.</p>
-                                <p>Sincroniza tu cuenta de spotify para poder disfrutar de tus playlist y poder escucharlo en el web online</p>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="#intro">Intro</a></li>
-								<li><a href="#buscadores">Buscadores</a></li>
-								<li><a href="#playlist">Playlist</a></li>
-								<li><a href="#contacto">Contacto</a></li>
-								<!--<li><a href="#elements">Elements</a></li>-->
-							</ul>
-						</nav>
-					</header>
-
 				<!-- Main -->
 					<div id="main">
+						<div class="inner">
 
-
-
-
-
-						<!-- Intro -->
-							<article id="intro">
-								<h2 class="major">Intro</h2>
-								<span class="image main"><img src="{{url_for('static', filename='images/pic01.jpg')}}" alt="" /></span>
-								<p>- Sincronizar tu cuenta de spotify para tus playlists que posteriormente puedes escuchar desde la pagina web de spotify online. </p>
-								<p>- La aplicación saldrá una serie de buscadores con las opciones de buscar por artista, álbum, canción...</p>
-                                <p>- El poder crear una lista de reproducción es un opción.</p>
-							</article>
-
-
-
-
-
-						<!-- Work -->
-							<article id="buscadores">
-								<h2 class="major">Buscadores</h2>
-								<span class="image main"><img src="{{url_for('static', filename='images/pic02.jpg')}}" alt="" /></span>
-								<p>En este apartado podemos encontrar un buscador con las opciones de buscar por artista, álbum, canción...</p>
-							</article>
-
-
-
-
-
-						<!-- About -->
-							<article id="playlist">
-								<h2 class="major">Playlist</h2>
-								<span class="image main"><img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="" /></span>
-								<p>Sincroniza tu cuenta de spotify para poder disfrutar de tus playlist y poder escucharlo en el web online.</p>
-							</article>
-
-
-
-
-
-
-						<!-- Contact -->
-							<article id="contacto">
-								<h2 class="major">Contacto</h2>
-                                <form method="post" action="http://www.gonzalonazareno.org/josedom/resultado.php"></form>
-								<form method="post" action="#">
-									<div class="field half first">
-										<label for="name">Nombre</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field half">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Mensaje</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Enviar Mensaje" class="special" /></li>
-										<li><input type="reset" value="Reiniciar" /></li>
+							<!-- Header -->
+								<header id="header">
+									<a href="{{url_for(inicio)}}" class="logo"><strong>Ernesto Vázquez García</strong> 1º ASIR</a>
+									<ul class="icons">
+                                        <li><a href="https://twitter.com/Azork68" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+									   <li><a href="https://open.spotify.com/artist/38M50K62fGv3u0XmMuLUWR" class="icon fa-spotify"><span class="label">Spotify</span></a></li>
+                                        <li><a href="https://www.instagram.com/ernestovazquez8" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+									   <li><a href="https://github.com/ernestovazquez" class="icon fa-github"><span class="label">GitHub</span></a></li>
 									</ul>
-								</form>
-								<ul class="icons">
-								    <li><a href="https://twitter.com/Azork68" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="https://open.spotify.com/artist/38M50K62fGv3u0XmMuLUWR" class="icon fa-spotify"><span class="label">Spotify</span></a></li>
-									<li><a href="https://www.instagram.com/ernestovazquez8" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="https://github.com/ernestovazquez" class="icon fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</article>
+								</header>
+
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1>WitoMusic</h1>
+											<p>Proyecto 3ª evaluación: Utilización de API web</p>
+										</header>
+										<p>El objetivo fundamental del proyecto es la realización de una página web alojada en Heroku y creada con el web framework python Flask, que utilizando algún servicio web proporcione una funcionalidad original.</p>
+										<ul class="actions">
+											<li><a href="http://lm.readthedocs.io/en/latest/unidades/u13/proyecto.html" class="button big">Continuar leyendo »</a></li>
+										</ul>
+									</div>
+									<span class="image object">
+										<img src="{{url_for('static', filename='images/bg.jpg')}}" alt="" />
+									</span>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Funciones</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="#" class="image"><img src="{{url_for('static', filename='images/pic01.jpg')}}" alt="" /></a>
+											<h3>Intro</h3>
+                                            <p>- Sincronizar tu cuenta de spotify para tus playlists que posteriormente puedes escuchar desde la pagina web de spotify online. </p>
+                                            <p>- La aplicación saldrá una serie de buscadores con las opciones de buscar por artista, álbum, canción...</p>
+                                            <p>- El poder crear una lista de reproducción es un opción.</p>
+											<ul class="actions">
+											</ul>
+										</article>
+										<article>
+											<a href="{{url_for(search)}}" class="image"><img src="{{url_for('static', filename='images/pic02.jpg')}}" alt="" /></a>
+											<h3>Buscadores</h3>
+											<p>En este apartado podemos encontrar un buscador con las opciones de buscar por artista, álbum, canción...</p>
+											<ul class="actions">
+												<li><a href="{{url_for(search)}}" class="button">Continuar leyendo »</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="{{url_for(playlist)}}" class="image"><img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="" /></a>
+											<h3>Playlist</h3>
+											<p>Sincroniza tu cuenta de spotify para poder disfrutar de tus playlist y poder escucharlo en el web online.</p>
+											<ul class="actions">
+												<li><a href="{{url_for(playlist)}}" class="button">Continuar leyendo »</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="{{url_for(contact)}}" class="image"><img src="{{url_for('static', filename='images/contacto.jpg')}}" alt="" /></a>
+											<h3>Contacto</h3>
+											<p></p>
+											<ul class="actions">
+												<li><a href="{{url_for(contact)}}" class="button">Continuar leyendo »</a></li>
+											</ul>
+										</article>
+									</div>
+								</section>
+
+						</div>
 					</div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
-			</div>
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
 
-		<!-- BG -->
-			<div id="bg"></div>
+							
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="{{url_for(inicio)}}">Inicio</a></li>
+										<li><a href="{{url_for(search)}}">Buscadores</a></li>
+                                        <li><a href="{{url_for(playlist)}}">Playlist</a></li>
+										<li><a href="{{url_for(contact)}}">Contacto</a></li>
+									</ul>
+								</nav>
+                            
+                            <!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Contacto</h2>
+									</header>
+									<ul class="contact">
+										<li class="fa-envelope-o"><a href="#">vazquezgarciaernesto@gmail.com</a></li>
+										<li class="fa-phone">640 51 42 63</li>
+										<li class="fa-home">C/ Las Botijas, 10, 41702, Dos Hermanas, Sevilla.<br /></li>
+									</ul>
+								</section>
+                            
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
 
 		<!-- Scripts -->
 			<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>

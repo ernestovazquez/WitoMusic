@@ -4,45 +4,81 @@
 @import 'libs/skel';
 
 /*
-	Dimension by HTML5 UP
+	Editorial by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-/* BG */
+/* Features */
 
-	#bg {
-		&:before {
-			background: _palette(bg-overlay);
+	.features {
+		&:after {
+			clear: both;
+			content: '';
+			display: block;
+		}
+
+		article {
+			float: left;
+
+			&:after {
+				clear: both;
+				content: '';
+				display: block;
+			}
+
+			.icon {
+				float: left;
+			}
 		}
 	}
 
-/* Header */
+/* Posts */
 
-	#header {
-		.logo {
-			margin: 0 auto;
+	.posts {
+		&:after {
+			clear: both;
+			content: '';
+			display: block;
 		}
 
-		.content {
-			display: inline-block;
-		}
-
-		nav {
-			ul {
-				display: inline-block;
-
-				 li {
-				 	display: inline-block;
-				 }
-			}
+		article {
+			float: left;
 		}
 	}
 
 /* Main */
 
 	#main {
-		article {
-			margin: 0 auto;
+		padding-left: _size(sidebar-width-alt);
+	}
+
+/* Sidebar */
+
+	#sidebar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		min-height: 100%;
+		width: _size(sidebar-width-alt);
+	}
+
+/* Banner */
+
+	#banner {
+		&:after {
+			clear: both;
+			content: '';
+			display: block;
+		}
+
+		.content {
+			float: left;
+			padding-right: (_size(element-margin) * 2);
+		}
+
+		.image {
+			float: left;
+			margin-left: 0;
 		}
 	}
