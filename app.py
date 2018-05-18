@@ -9,7 +9,7 @@ import json
 import os
 app = Flask(__name__)
 
-redirect_uri = 'https://witomusic.herokuapp.com/callback'
+redirect_url = 'https://witomusic.herokuapp.com/callback'
 scope = ['playlist-read-private', 'playlist-read-collaborative']
 token_url = "https://accounts.spotify.com/api/token"
 client_id=["7d037969ceb2431da15d42a216c2d9e3"]
@@ -52,7 +52,7 @@ def login():
     redirect("/playlist")
   else:
     response.set_cookie("token", '',max_age=0)
-    oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
+    oauth2 = OAuth2Session(client_id, redirect_url=redirect_url,scope=scope)
     authorization_url, state = oauth2.authorization_url('https://accounts.spotify.com/authorize/')
     response.set_cookie("oauth_state", state)
     redirect(authorization_url)
