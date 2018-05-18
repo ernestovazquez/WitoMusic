@@ -10,8 +10,8 @@ app = Flask(__name__)
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
 scope = ['playlist-read-private', 'playlist-read-collaborative']
 token_url = "https://accounts.spotify.com/api/token"
-client_id=os.environ["client_id"]
-client_secret=os.environ["client_secret"]
+
+app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 def token_valido():
