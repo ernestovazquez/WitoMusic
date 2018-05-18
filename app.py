@@ -39,7 +39,7 @@ def spotify():
 
 @app.route('/perfil_spotify')
 def info_perfil_spotify():
-  if token_valido_spotify():
+  if token_valido():
     return redirect("/perfil_usuario_spotify")
   else:
     oauth2 = OAuth2Session(os.environ["client_id"], redirect_uri=redirect_uri,scope=scope)
