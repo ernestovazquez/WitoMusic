@@ -54,7 +54,7 @@ def info_perfil_spotify():
 def get_token_spotify():
     oauth2 = OAuth2Session(os.environ["client_id"], state=session["oauth_state_sp"],redirect_uri=redirect_uri)
     print (request.url)
-    token = oauth2.fetch_token(token_url_sp, client_secret=os.environ["client_secret"],authorization_response=request.url[:4]+"s"+request.url[4:])
+    token = oauth2.fetch_token(token_url, client_secret=os.environ["client_secret"],authorization_response=request.url[:4]+"s"+request.url[4:])
     session["token_sp"]=json.dumps(token)
     return redirect("/perfil_usuario_spotify")
 
