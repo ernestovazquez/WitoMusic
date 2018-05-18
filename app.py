@@ -16,18 +16,6 @@ client_id=["7d037969ceb2431da15d42a216c2d9e3"]
 client_secret=["87dd513deba04006a9e97557857a066d"]
 
 
-def token_valido():
-	token=request.get_cookie("token", secret='some-secret-key')
-	if token:
-		token_ok = True
-		try:
-			oauth2 = OAuth2Session(client_id, token=token)
-			r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
-		except TokenExpiredError as e:
-			token_ok = False
-	else:
-		token_ok = False
-	return token_ok
 
 
 @app.route('/')
