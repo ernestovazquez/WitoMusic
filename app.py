@@ -62,7 +62,7 @@ def get_token_spotify():
 
 @app.route('/perfil_usuario_spotify')
 def info_perfil_usuario_spotify():
-    if token_valido_spotify():
+    if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/me')
