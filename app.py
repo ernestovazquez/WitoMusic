@@ -6,8 +6,6 @@ from urllib.parse import parse_qs
 import os,json
 
 app = Flask(__name__)   
-app.secret_key= '87dd513deba04006a9e97557857a066d'
-
 
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
 scope = ['playlist-read-private', 'playlist-read-collaborative']
