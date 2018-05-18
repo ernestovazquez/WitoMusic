@@ -12,7 +12,8 @@ app = Flask(__name__)
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
 scope = ['playlist-read-private', 'playlist-read-collaborative']
 token_url = "https://accounts.spotify.com/api/token"
-
+client_id=["7d037969ceb2431da15d42a216c2d9e3"]
+client_secret=["87dd513deba04006a9e97557857a066d"]
 
 
 def token_valido():
@@ -44,9 +45,18 @@ def contact():
 	return render_template('contacto.html')
 
 
-@app.route('/playlist')
-def playlist():
-	return render_template('playlist.html')
+
+@app.route('/login')
+def login():
+  if token_valido():
+    redirect("/playlist")
+  else:
+    response.set_cookie("token", '',max_age=0)
+    oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
+    authorization_url, state = oauth2.authorization_url('https://accounts.spotify.com/authorize/')
+    response.set_cookie("oauth_state", state)
+    redirect(authorization_url)
+
 
 
 

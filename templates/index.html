@@ -1,41 +1,6 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>WitoMusic</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.png')}}"/>
+{% extends 'base.html'%}
 
-		<!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
-	</head>
-	<body>
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-
-							<!-- Header -->
-								<header id="header">
-									<a href="{{url_for('inicio')}}" class="logo"><strong>Ernesto Vázquez García</strong> 1º ASIR</a>
-									<ul class="icons">
-                                        <li><a href="https://twitter.com/Azork68" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-									   <li><a href="https://open.spotify.com/artist/38M50K62fGv3u0XmMuLUWR" class="icon fa-spotify"><span class="label">Spotify</span></a></li>
-                                        <li><a href="https://www.instagram.com/ernestovazquez8" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-									   <li><a href="https://github.com/ernestovazquez/WitoMusic" class="icon fa-github"><span class="label">GitHub</span></a></li>
-									   <li><a href="https://www.youtube.com/channel/UC4lIYW4GijOdpuGFHyPg0TA/videos?view_as=subscriber" class="icon fa-youtube"><span class="label">YouTube</span></a></li>
-									</ul>
-								</header>
+{% block content %}
 
 							<!-- Banner -->
 								<section id="banner">
@@ -78,11 +43,11 @@
 											</ul>
 										</article>
 										<article>
-											<a href="{{url_for('playlist')}}" class="image"><img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="" /></a>
+											<a href="{{url_for('login')}}" class="image"><img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="Spotify" /></a>
 											<h3>Playlists</h3>
 											<p>Sincroniza tu cuenta de spotify para poder disfrutar de tus playlist y poder escucharlo en el web online.</p>
 											<ul class="actions">
-												<li><a href="{{url_for('playlist')}}" class="button">Continuar leyendo »</a></li>
+												<li><a href="{{url_for('login')}}" class="button">Continuar leyendo »</a></li>
 											</ul>
 										</article>
 										<article>
@@ -98,52 +63,4 @@
 
 						</div>
 					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							
-
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="{{url_for('inicio')}}">Inicio</a></li>
-										<li><a href="{{url_for('search')}}">Buscadores</a></li>
-                                        <li><a href="{{url_for('playlist')}}">Playlist</a></li>
-										<li><a href="{{url_for('contact')}}">Contacto</a></li>
-									</ul>
-								</nav>
-                            
-                            <!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Contacto</h2>
-									</header>
-									<ul class="contact">
-										<li class="fa-envelope-o"><a href="#">vazquezgarciaernesto@gmail.com</a></li>
-										<li class="fa-phone">640 51 42 63</li>
-										<li class="fa-home">C/ Las Botijas, 10, 41702, Dos Hermanas, Sevilla.<br /></li>
-									</ul>
-								</section>
-                            
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
-
-						</div>
-					</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
-			<script src="{{url_for('static', filename='js/skel.min.js')}}"></script>
-			<script src="{{url_for('static', filename='js/util.js')}}"></script>
-			<script src="{{url_for('static', filename='js/main.js')}}"></script>
-	</body>
-</html>
+{% endblock %}
