@@ -67,7 +67,7 @@ def info_perfil_usuario_spotify():
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/me')
         doc=json.loads(r.content.decode("utf-8"))
-        return render_template("perfil_spotify.html", datos=doc)
+        return render_template("perfil.html", datos=doc)
     else:
         return redirect('/perfil')
 
