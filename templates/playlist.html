@@ -1,17 +1,19 @@
-{% extends 'base.html'%}
 
 {% block content %}
 
-<!-- Main -->
-      <div id="main">
-
-          <section id="two">
-          %for i in playlist["playlists"]["items"]:
-            <span>Propietario {{i["owner"]["id"]}}<span>
-            <a href="{{i["external_urls"]["spotify"]}}">{{i["name"]}}</a><br>
-          %end
-          </section>
-
-      </div>
+    <div class="wrapper row3">
+    <main class="container clear"> 
+      <div class="group btmspace-80">
+        <article>
+      		<h3> Tus playlists </h3>
+		<ol>
+      		%for lista in listas_usuario['items']:
+      	 		<li><a href="{{lista["external_urls"]["spotify"]}}" >{{lista["name"]}}</a></li>
+      		 %end
+		 </ol>
+	</article>
+	</div>
+     </main>
+     </div>
 
 {% endblock %}
