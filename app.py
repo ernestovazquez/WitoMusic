@@ -78,11 +78,6 @@ def salir_spotify():
     return redirect("/spotify")
 
 
-
-
-
-
-
 @app.route('/')
 def inicio():
 	return render_template('index.html')
@@ -99,8 +94,8 @@ def contact():
 
 
 
-@app.route('/playlist')
-def playlist():
+@app.route('/login')
+def login():
   if token_valido():
     redirect("/playlist")
   else:
