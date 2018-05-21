@@ -79,6 +79,10 @@ def inicio():
 	return render_template('index.html')
 
 
+@app.route('/search',methods=["GET","POST"])
+def search():
+    return redirect("/spotify")
+
 
 @app.route('/contact')
 def contact():
