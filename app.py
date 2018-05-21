@@ -94,8 +94,8 @@ def contact():
 
 
 
-@app.route('/login')
-def login():
+@app.route('/playlist')
+def playlist():
   if token_valido():
     redirect("/playlist")
   else:
