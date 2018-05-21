@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request,session,get, post, response, redirect 
+from flask import Flask,render_template,redirect,request,session
 import requests
 from requests_oauthlib import OAuth1
 from requests_oauthlib import OAuth2Session
@@ -101,7 +101,7 @@ def login():
     redirect(authorization_url)
 
 
-@app.route('/search',method='POST')
+@app.route('/search')
 def search():
     buscador = request.forms.get('buscador')
     opciones = request.forms.get('opciones')
