@@ -4,6 +4,8 @@ from requests_oauthlib import OAuth1
 from requests_oauthlib import OAuth2Session
 from urllib.parse import parse_qs
 import os,json
+import spotipy
+
 
 app = Flask(__name__)   
 
