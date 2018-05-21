@@ -79,9 +79,7 @@ def inicio():
 	return render_template('index.html')
 
 
-@app.route('/search',methods=["GET","POST"])
-def search():
-    return redirect("/spotify")
+
 
 
 @app.route('/contact')
@@ -100,6 +98,18 @@ def login():
     response.set_cookie("oauth_state", state)
     redirect(authorization_url)
 
+
+@app.route('/search')
+def search():
+    buscador = request.forms.get('buscador')
+    opciones = request.forms.get('opciones')
+    datos={"q":buscador,"type":opciones}
+    if opciones == "track":
+        canciones = requests.get("https://api.spotify.com/v1/search", params=datos)
+        if canciones.status_code == 200:
+            cancion = canciones.json()
+    
+        return template("canciones.html", canciones=cancion)
 
 
 
