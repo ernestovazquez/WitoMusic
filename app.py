@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request,session
+from flask import Flask,render_template,redirect,request,session,get, post, response, redirect 
 import requests
 from requests_oauthlib import OAuth1
 from requests_oauthlib import OAuth2Session
@@ -99,6 +99,20 @@ def login():
     authorization_url, state = oauth2.authorization_url('https://accounts.spotify.com/authorize/')
     response.set_cookie("oauth_state", state)
     redirect(authorization_url)
+
+
+@app.route('/search',method='POST')
+def search():
+    buscador = request.forms.get('buscador')
+    opciones = request.forms.get('opciones')
+    datos={"q":buscador,"type":opciones}
+    if opciones == "track":
+        canciones = requests.get("https://api.spotify.com/v1/search", params=datos)
+        if canciones.status_code == 200:
+            cancion = canciones.json()
+    
+        return template("canciones.html", canciones=cancion)
+
 
 
 port=os.environ["PORT"]
