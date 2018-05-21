@@ -5,7 +5,6 @@ from requests_oauthlib import OAuth2Session
 from urllib.parse import parse_qs
 import os,json
 
-
 app = Flask(__name__)   
 
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
@@ -13,7 +12,6 @@ scope = ['playlist-read-private', 'playlist-read-collaborative']
 token_url = "https://accounts.spotify.com/api/token"
 
 app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-
 
 def token_valido():
     try:
@@ -37,7 +35,6 @@ def spotify():
     return render_template("oauth2_spotify.html")
 
 
-
 @app.route('/perfil_spotify')
 def info_perfil_spotify():
   if token_valido():
@@ -50,7 +47,6 @@ def info_perfil_spotify():
     return redirect(authorization_url)  
 
 
-
 @app.route('/callback')
 def get_token_spotify():
     oauth2 = OAuth2Session(os.environ["client_id"], state=session["oauth_state_sp"],redirect_uri=redirect_uri)
@@ -58,7 +54,6 @@ def get_token_spotify():
     token = oauth2.fetch_token(token_url, client_secret=os.environ["client_secret"],authorization_response=request.url[:4]+"s"+request.url[4:])
     session["token_sp"]=json.dumps(token)
     return redirect("/perfil_usuario_spotify")
-
 
 
 @app.route('/perfil_usuario_spotify')
@@ -94,7 +89,6 @@ def contact():
 	return render_template('contacto.html')
 
 
-
 @app.route('/login')
 def login():
   if token_valido():
@@ -105,8 +99,6 @@ def login():
     authorization_url, state = oauth2.authorization_url('https://accounts.spotify.com/authorize/')
     response.set_cookie("oauth_state", state)
     redirect(authorization_url)
-
-
 
 
 port=os.environ["PORT"]
