@@ -98,10 +98,7 @@ def search():
 
 @app.route('/playlist')
 def playlist():
-    if not "id" in session:
-        return redirect('/')
-
-    elif token_valido():
+    if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
