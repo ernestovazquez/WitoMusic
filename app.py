@@ -102,7 +102,9 @@ def search():
     
         return template("canciones.html", canciones=cancion)
 
-
+@app.route('/playlist')
+def playlist():
+    return render_template('index.html')
 
 
 port=os.environ["PORT"]
