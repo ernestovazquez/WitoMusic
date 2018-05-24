@@ -102,7 +102,7 @@ def search():
     
         return template("canciones.html", canciones=cancion)
 
-@route('/playlist', method='GET')
+@app.route('/playlist', method='GET')
 def personal():
     token = request.get_cookie("token", secret='some-secret-key')
     tokens = token["token_type"]+" "+token["access_token"]
