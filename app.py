@@ -85,8 +85,8 @@ def contact():
 	return render_template('contacto.html')
 
 
-@app.route('/login')
-def login():
+@app.route('/playlist')
+def playlist():
   if token_valido():
     redirect("/playlist")
   else:
