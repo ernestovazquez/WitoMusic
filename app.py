@@ -92,8 +92,8 @@ def contact():
 
 @app.route('/search')
 def search():
-    buscador = request.get('buscador')
-    opciones = request.get('opciones')
+    buscador = requests.forms.get('buscador')
+    opciones = requests.forms.get('opciones')
     datos={"q":buscador,"type":opciones}
     if opciones == "track":
         canciones = requests.get("https://api.spotify.com/v1/search", params=datos)
