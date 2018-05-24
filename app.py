@@ -90,17 +90,7 @@ def inicio():
 def contact():
 	return render_template('contacto.html')
 
-@app.route('/search')
-def search():
-    buscador = request.forms.get('buscador')
-    opciones = request.forms.get('opciones')
-    datos={"q":buscador,"type":opciones}
-    if opciones == "track":
-        canciones = requests.get("https://api.spotify.com/v1/search", params=datos)
-        if canciones.status_code == 200:
-            cancion = canciones.json()
-    
-        return template("canciones.html", canciones=cancion)
+
 
 
 @app.route('playlist')
@@ -119,7 +109,7 @@ def playlist():
 
 
 @app.route('/canciones/<idc>')
-def saludo(idc):
+def canciones(idc):
     if token_valido_spotify():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
