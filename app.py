@@ -98,19 +98,7 @@ def search():
         return template("canciones.html", canciones=cancion)
 
 
-@app.route('playlist')
-def playlist():
-    if not "id" in session:
-        return redirect('/')
 
-    if token_valido_spotify():
-        token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
-        doc=json.loads(r.content.decode("utf-8"))
-        return render_template("playlist.html", datos=doc)
-    else:
-        return redirect('/')
 
 
 
