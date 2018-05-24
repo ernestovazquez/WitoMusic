@@ -108,17 +108,6 @@ def playlist():
         return redirect('/')
 
 
-@app.route('/canciones/<idc>')
-def canciones(idc):
-    if token_valido_spotify():
-        token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc))
-        doc=json.loads(r.content.decode("utf-8"))
-        return render_template("canciones.html", datos=doc)
-    else:
-        return redirect('/spotify')
-
 
 port=os.environ["PORT"]
 app.run('0.0.0.0',int(port), debug=True)
