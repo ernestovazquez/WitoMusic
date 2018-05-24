@@ -102,22 +102,32 @@ def search():
     
         return template("canciones.html", canciones=cancion)
 
-@app.route('/playlist')
-def personal():
-    token = request.get_cookie("token", secret='some-secret-key')
-    tokens = token["token_type"]+" "+token["access_token"]
-    headers = {"Accept":"aplication/json","Authorization":tokens}
-    perfil = requests.get("https://api.spotify.com/v1/me", headers=headers)
-    if perfil.status_code == 200:
-        cuenta = perfil.json()
-        cuenta = cuenta["id"]
-        url_playlists = "https://api.spotify.com/v1/users/"+str(cuenta)+"/playlists"
-    listas = requests.get(url_playlists, headers=headers)
-    if listas.status_code == 200:
-        playlists_usuario = json.loads(listas.text)
-        return template('playlist.html', listas_usuario=playlists_usuario)
+
+@app.route('playlist')
+def playlist():
+    if not "id" in session:
+        return redirect('/')
+
+    if token_valido_spotify():
+        token=json.loads(session["token_sp"])
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
+        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
+        doc=json.loads(r.content.decode("utf-8"))
+        return render_template("playlist.html", datos=doc)
     else:
         return redirect('/')
+
+
+@app.route('/canciones/<idc>')
+def saludo(idc):
+    if token_valido_spotify():
+        token=json.loads(session["token_sp"])
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
+        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc))
+        doc=json.loads(r.content.decode("utf-8"))
+        return render_template("canciones.html", datos=doc)
+    else:
+        return redirect('/spotify')
 
 
 port=os.environ["PORT"]

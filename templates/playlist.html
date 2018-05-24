@@ -1,18 +1,8 @@
 {% extends "base.html" %}
 {% block title %}oauth{% endblock %}
 {% block content %}
-    <div class="wrapper row3">
-    <main class="container clear"> 
-      <div class="group btmspace-80">
-        <article>
-      		<h3> Your playlists </h3>
-		<ol>
-      		%for lista in listas_usuario['items']:
-      	 		<li><a href="{{lista["external_urls"]["spotify"]}}" >{{lista["name"]}}</a></li>
-      		 %end
-		 </ol>
-	</article>
-	</div>
-     </main>
-     </div>
+	{% for i in datos["items"] -%}
+    	<p>Id: {{i["name"]}}</p><p><a href="/canciones/{{i["id"]}}">Ver Canciones</a></p>
+    {% endfor %}
+    <br/><a href="/logout_spotify">Cerrar</a>
 {% endblock %}

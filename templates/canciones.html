@@ -1,15 +1,8 @@
-{% extends 'base.html'%}
-
-{% block content %}				
-
-				<div id="main">
-					<section id="two">
-						%for i in canciones["tracks"]["items"]:
-							<ul><p><a href="{{i["external_urls"]["spotify"]}}">{{i["name"]}}</a> Uri de la canción --> {{i["uri"]}}
-							<iframe src="https://embed.spotify.com/?uri={{i["uri"]}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
-							</ul>
-						%end
-					</section>
-
-			</div>
+{% extends "base.html" %}
+{% block title %}oauth{% endblock %}
+{% block content %}
+	{% for i in datos["items"] -%}
+    	<p> {{i["track"]["album"]["artists"][0]["name"]}}-{{i["track"]["name"]}}</p>
+    {% endfor %}
+    <br/><a href="/playlist">Cerrar</a>
 {% endblock %}
