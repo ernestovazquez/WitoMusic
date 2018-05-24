@@ -30,10 +30,6 @@ def token_valido():
     return token_ok
 
 
-@app.route('/spotify')
-def spotify():
-    return render_template("oauth2_spotify.html")
-
 
 @app.route('/perfil_spotify')
 def info_perfil_spotify():
@@ -47,6 +43,9 @@ def info_perfil_spotify():
     return redirect(authorization_url)  
 
 
+    
+
+
 @app.route('/callback')
 def get_token_spotify():
     oauth2 = OAuth2Session(os.environ["client_id"], state=session["oauth_state_sp"],redirect_uri=redirect_uri)
@@ -54,6 +53,7 @@ def get_token_spotify():
     token = oauth2.fetch_token(token_url, client_secret=os.environ["client_secret"],authorization_response=request.url[:4]+"s"+request.url[4:])
     session["token_sp"]=json.dumps(token)
     return redirect("/perfil_usuario_spotify")
+
 
 
 @app.route('/perfil_usuario_spotify')
@@ -68,6 +68,12 @@ def info_perfil_usuario_spotify():
         return redirect('/perfil')
 
 
+
+@app.route('/spotify')
+def spotify():
+    return render_template("oauth2_spotify.html")
+
+
 @app.route('/logout_spotify')
 def salir_spotify():
     session.pop("token_sp",None)
@@ -76,7 +82,7 @@ def salir_spotify():
 
 @app.route('/')
 def inicio():
-	return render_template('index.html')
+    return render_template('index.html')
 
 
 
@@ -98,7 +104,10 @@ def search():
 
 @app.route('/playlist')
 def playlist():
-    if token_valido():
+    if not "id" in session:
+        return redirect('/')
+
+    elif token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
@@ -107,7 +116,16 @@ def playlist():
     else:
         return redirect('/')
 
-
+@app.route('/cancionesplaylist/<idc>')
+def saludo(idc):
+    if token_valido_spotify():
+        token=json.loads(session["token_sp"])
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
+        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc))
+        doc=json.loads(r.content.decode("utf-8"))
+        return render_template("cancionesplaylist.html", datos=doc)
+    else:
+        return redirect('/spotify')
 
 
 port=os.environ["PORT"]
