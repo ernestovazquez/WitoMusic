@@ -92,15 +92,9 @@ def contact():
 
 @app.route('/search')
 def search():
-    buscador = requests.get('buscador')
-    opciones = requests.get('opciones')
-    datos={"q":buscador,"type":opciones}
-    if opciones == "track":
-        canciones = requests.get("https://api.spotify.com/v1/search", params=datos)
-        if canciones.status_code == 200:
-            cancion = canciones.json()
+    return render_template('index.html')
+
     
-        return template("canciones.html", canciones=cancion)
 
 @app.route('/playlist')
 def playlist():
