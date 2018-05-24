@@ -116,6 +116,8 @@ def personal():
     if listas.status_code == 200:
         playlists_usuario = json.loads(listas.text)
         return template('playlist.html', listas_usuario=playlists_usuario)
+    else:
+        return redirect('/')
 
 
 port=os.environ["PORT"]
