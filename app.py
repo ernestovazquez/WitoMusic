@@ -71,7 +71,7 @@ def info_perfil_usuario_spotify():
 @app.route('/logout_spotify')
 def salir_spotify():
     session.pop("token_sp",None)
-    return redirect('/')
+    return render_template('index.html')
 
 
 @app.route('/')
@@ -85,6 +85,18 @@ def contact():
 	return render_template('contacto.html')
 
 
+@app.route('/login')
+def login():
+  if token_valido():
+    redirect("/playlist")
+  else:
+    response.set_cookie("token", '',max_age=0)
+    oauth2 = OAuth2Session(client_id, redirect_uri=redirect_uri,scope=scope)
+    authorization_url, state = oauth2.authorization_url('https://accounts.spotify.com/authorize/')
+    response.set_cookie("oauth_state", state)
+    redirect(authorization_url)
+
+
 @app.route('/search')
 def search():
     buscador = request.forms.get('buscador')
@@ -96,21 +108,6 @@ def search():
             cancion = canciones.json()
     
         return template("canciones.html", canciones=cancion)
-
-
-@app.route('playlist')
-def playlist():
-    if not "id" in session:
-        return redirect('/')
-
-    if token_valido_spotify():
-        token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
-        doc=json.loads(r.content.decode("utf-8"))
-        return render_template("playlist.html", datos=doc)
-    else:
-        return redirect('/')
 
 
 
