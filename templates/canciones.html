@@ -3,7 +3,6 @@
 {% block content %}				
 
 				<div id="main">
-
 					<section id="two">
 						%for i in canciones["tracks"]["items"]:
 							<ul><p><a href="{{i["external_urls"]["spotify"]}}">{{i["name"]}}</a> Uri de la canción --> {{i["uri"]}}
