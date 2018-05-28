@@ -33,7 +33,6 @@ def token_valido():
     return token_ok
 
 
-
 @app.route('/perfil_spotify')
 def info_perfil_spotify():
   if token_valido():
@@ -46,7 +45,6 @@ def info_perfil_spotify():
     return redirect(authorization_url)  
     
 
-
 @app.route('/callback')
 def get_token_spotify():
     oauth2 = OAuth2Session(os.environ["client_id"], state=session["oauth_state_sp"],redirect_uri=redirect_uri)
@@ -54,7 +52,6 @@ def get_token_spotify():
     token = oauth2.fetch_token(token_url, client_secret=os.environ["client_secret"],authorization_response=request.url[:4]+"s"+request.url[4:])
     session["token_sp"]=json.dumps(token)
     return redirect("/perfil_usuario_spotify")
-
 
 
 @app.route('/perfil_usuario_spotify')
@@ -68,7 +65,6 @@ def info_perfil_usuario_spotify():
         return render_template("perfil.html", datos=doc)
     else:
         return redirect('/perfil')
-
 
 
 @app.route('/spotify')
@@ -86,22 +82,10 @@ def salir_spotify():
 def inicio():
     return render_template('index.html')
 
+
 @app.route('/contact')
 def contact():
 	return render_template('contacto.html')
-
-@app.route('/search')
-def search():
-    if "token_sp" in session:
-        if token_valido():
-            return render_template('buscadores.html')
-        else:
-            return redirect('/')
-    else:
-        return redirect('/spotify')
-
-
-
 
 
 @app.route('/playlist')
@@ -113,6 +97,17 @@ def playlist():
             r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
             doc=json.loads(r.content.decode("utf-8"))
             return render_template("playlist.html", datos=doc)
+        else:
+            return redirect('/')
+    else:
+        return redirect('/spotify')
+
+
+@app.route('/search')
+def search():
+    if "token_sp" in session:
+        if token_valido():
+            return render_template('buscadores.html')
         else:
             return redirect('/')
     else:
