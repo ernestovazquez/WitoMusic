@@ -92,7 +92,7 @@ def contact():
 
 @app.route('/search')
 def search():
-    return render_template('index.html')
+    return render_template('buscadores.html')
 
     
 
