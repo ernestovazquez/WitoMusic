@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}oauth{% endblock %}
+{% block content %}		
+
+			<div id="main">
+					<section id="two">
+						<a href="http://spotype-aitor28ld.rhcloud.com"> Volver atrás</a><br>
+						%for i in artis:
+							<a href="{{i["external_urls"]["spotify"]}}">{{i["name"]}}<a></p>
+						%end
+					</section>
+			</div>
+
+{% endblock %}

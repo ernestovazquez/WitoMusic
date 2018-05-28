@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}oauth{% endblock %}
+{% block content %}
+
+				<div id="main">
+
+
+					<section id="two">
+						<a href="/"> Volver atrás</a><br>
+						%for i in album["albums"]["items"]:
+							<a href="{{i["external_urls"]["spotify"]}}"><img src="{{i["images"][0]["url"]}}" height="300" width="300"></a>
+							<iframe src="https://embed.spotify.com/?uri={{i["uri"]}}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe><br>
+						%end
+					</section>
+
+			</div>
+
+    
+{% endblock %}
