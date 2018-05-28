@@ -9,7 +9,7 @@ import uuid
 
 app = Flask(__name__)   
 app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-app.jinja_env.filters['zip'] = zip
+
 
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
 scope = ['playlist-read-private', 'playlist-read-collaborative']
