@@ -108,7 +108,7 @@ def playlist():
         else:
             return redirect('/')
     else:
-        return render_template("debesiniciar.html")
+        return redirect('/spotify')
 
 
 port=os.environ["PORT"]
