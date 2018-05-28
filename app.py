@@ -94,7 +94,7 @@ def search():
 
     
 
-@route('/playlist', method='GET')
+@app.route('/playlist', method='GET')
 def playlist():
     token = request.get_cookie("token", secret='some-secret-key')
     tokens = token["token_type"]+" "+token["access_token"]
@@ -105,13 +105,13 @@ def playlist():
         cuenta = cuenta["id"]
         url_playlists = "https://api.spotify.com/v1/users/"+str(cuenta)+"/playlists"
     listas = requests.get(url_playlists, headers=headers)
-    if listas.status_code == 200:
+    elif listas.status_code == 200:
         playlists_usuario = json.loads(listas.text)
         return template('playlist.html', listas_usuario=playlists_usuario)
     else:
         return redirect('/')
     
-@route('/static/<filepath:path>')
+@app.route('/static/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root='static')
 
