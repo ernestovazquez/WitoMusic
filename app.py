@@ -98,7 +98,7 @@ def search():
 def playlist():
     if token_valido():
         token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id_spotify"], token=token)
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
         doc=json.loads(r.content.decode("utf-8"))
         return render_template("playlist.html", datos=doc)
