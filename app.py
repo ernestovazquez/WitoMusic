@@ -61,6 +61,7 @@ def info_perfil_usuario_spotify():
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/me')
         doc=json.loads(r.content.decode("utf-8"))
+        session["id"]=doc["id"]
         return render_template("perfil.html", datos=doc)
     else:
         return redirect('/perfil')
@@ -83,7 +84,6 @@ def inicio():
     return render_template('index.html')
 
 
-
 @app.route('/contact')
 def contact():
 	return render_template('contacto.html')
@@ -98,7 +98,6 @@ def search():
 def playlist():
     if not "id" in session:
         return redirect('/')
-
     if token_valido_spotify():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id_spotify"], token=token)
