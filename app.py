@@ -102,8 +102,6 @@ def playlist():
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
         doc=json.loads(r.content.decode("utf-8"))
         return render_template("playlist.html", datos=doc)
-    else:
-        return redirect('/')
 
 
 port=os.environ["PORT"]
