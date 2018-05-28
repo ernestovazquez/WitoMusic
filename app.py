@@ -2,16 +2,19 @@ from flask import Flask,render_template,redirect,request,session
 import requests
 from requests_oauthlib import OAuth1
 from requests_oauthlib import OAuth2Session
+from oauthlib.oauth2 import TokenExpiredError
 from urllib.parse import parse_qs
 import os,json
+import uuid
 
 app = Flask(__name__)   
+app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.jinja_env.filters['zip'] = zip
 
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
 scope = ['playlist-read-private', 'playlist-read-collaborative']
 token_url = "https://accounts.spotify.com/api/token"
 
-app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 def token_valido():
     try:
@@ -102,6 +105,8 @@ def playlist():
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
         doc=json.loads(r.content.decode("utf-8"))
         return render_template("playlist.html", datos=doc)
+    else:
+        return redirect('/')
 
 
 port=os.environ["PORT"]
