@@ -90,15 +90,7 @@ def inicio():
 def contact():
 	return render_template('contacto.html')
 
-@app.route('/search')
-def search():
-    if "token_sp" in session:
-        if token_valido():
-            return render_template('buscadores.html')
-        else:
-            return redirect('/')
-    else:
-        return redirect('/spotify')
+
 
 
 
