@@ -100,27 +100,27 @@ def search():
     opciones = request.get('opciones')
     datos={"q":buscador,"type":opciones}
     if opciones == "artist":
-        artistas = requests.get("https://api.spotify.com/v1/search", params=datos)
+        artistas = oauth2.get("https://api.spotify.com/v1/search", params=datos)
         if artistas.status_code == 200:
             artista=artistas.json()
             artis=artista["artists"]["items"]
         return template('artistas.html', artis=artis)
 
     if opciones == "track":
-        canciones = requests.get("https://api.spotify.com/v1/search", params=datos)
+        canciones = oauth2.get("https://api.spotify.com/v1/search", params=datos)
         if canciones.status_code == 200:
             cancion = canciones.json()
         return template("canciones.html", canciones=cancion)
 
     if opciones == "album":
-        albums = requests.get("https://api.spotify.com/v1/search", params=datos)
+        albums = oauth2.get("https://api.spotify.com/v1/search", params=datos)
         if albums.status_code == 200:
             album = albums.json()
         return template("albums.html", album=album)
 
         
     if opciones == "playlist":
-        lista = requests.get("https://api.spotify.com/v1/search", params=datos)
+        lista = oauth2.get("https://api.spotify.com/v1/search", params=datos)
         if lista.status_code == 200:
             playlist = lista.json()
         return template('playlist.html', playlist=playlist)
