@@ -2,10 +2,9 @@
 {% block title %}oauth{% endblock %}
 {% block content %}
 	<h1>¡Acabas de iniciar sesión en Spotify!</h1>
-	<span class="image main"><img src="static/images/pic03.jpg" alt="" width="50%" height="50%"/></span>
     <p>Id: {{datos["id"]}}</p>
     <p>Email: {{datos["email"]}}</p>
     <p>País: {{datos["country"]}}</p>
 
-    <br/><a href="/logout_spotify">Volver al inicio</a>
+    <br/><a href="/logout_spotify">Volver al inicio para empezar a usar las aplicaciones</a>
 {% endblock %}
