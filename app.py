@@ -96,8 +96,8 @@ def contact():
 
 @app.route('/search')
 def search():
-    buscador = request.forms.get('buscador')
-    opciones = request.forms.get('opciones')
+    buscador = request.get('buscador')
+    opciones = request.get('opciones')
     datos={"q":buscador,"type":opciones}
     if opciones == "artist":
         artistas = requests.get("https://api.spotify.com/v1/search", params=datos)
@@ -117,7 +117,7 @@ def search():
         if albums.status_code == 200:
             album = albums.json()
         return template("albums.html", album=album)
-        
+
         
     if opciones == "playlist":
         lista = requests.get("https://api.spotify.com/v1/search", params=datos)
