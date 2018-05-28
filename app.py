@@ -108,6 +108,8 @@ def playlist():
     if listas.status_code == 200:
         playlists_usuario = json.loads(listas.text)
         return template('playlist.html', listas_usuario=playlists_usuario)
+    else:
+        return redirect('/')
     
 @route('/static/<filepath:path>')
 def server_static(filepath):
