@@ -90,44 +90,15 @@ def inicio():
 def contact():
 	return render_template('contacto.html')
 
-
-
-
-
 @app.route('/search')
 def search():
-    buscador = request.get('buscador')
-    opciones = request.get('opciones')
-    datos={"q":buscador,"type":opciones}
-    if opciones == "artist":
-        artistas = oauth2.get("https://api.spotify.com/v1/search", params=datos)
-        if artistas.status_code == 200:
-            artista=artistas.json()
-            artis=artista["artists"]["items"]
-        return template('artistas.html', artis=artis)
-
-    if opciones == "track":
-        canciones = oauth2.get("https://api.spotify.com/v1/search", params=datos)
-        if canciones.status_code == 200:
-            cancion = canciones.json()
-        return template("canciones.html", canciones=cancion)
-
-    if opciones == "album":
-        albums = oauth2.get("https://api.spotify.com/v1/search", params=datos)
-        if albums.status_code == 200:
-            album = albums.json()
-        return template("albums.html", album=album)
-
-        
-    if opciones == "playlist":
-        lista = oauth2.get("https://api.spotify.com/v1/search", params=datos)
-        if lista.status_code == 200:
-            playlist = lista.json()
-        return template('playlist.html', playlist=playlist)
-
-
-
-
+    if "token_sp" in session:
+        if token_valido():
+            return render_template('buscadores.html')
+        else:
+            return redirect('/')
+    else:
+        return redirect('/spotify')
 
 
 
