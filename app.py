@@ -98,14 +98,17 @@ def search():
 
 @app.route('/playlist')
 def playlist():
-    if token_valido():
-        token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
-        doc=json.loads(r.content.decode("utf-8"))
-        return render_template("playlist.html", datos=doc)
+    if "token_sp" in session:
+        if token_valido():
+            token=json.loads(session["token_sp"])
+            oauth2 = OAuth2Session(os.environ["client_id"], token=token)
+            r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
+            doc=json.loads(r.content.decode("utf-8"))
+            return render_template("playlist.html", datos=doc)
+        else:
+            return redirect('/')
     else:
-        return redirect('/')
+        return redirect('debesiniciar.html')
 
 
 port=os.environ["PORT"]
