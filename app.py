@@ -94,9 +94,24 @@ def search():
 
     
 
-@app.route('/playlist')
+@route('/playlist', method='GET')
 def playlist():
-    return render_template('index.html')
+    token = request.get_cookie("token", secret='some-secret-key')
+    tokens = token["token_type"]+" "+token["access_token"]
+    headers = {"Accept":"aplication/json","Authorization":tokens}
+    perfil = requests.get("https://api.spotify.com/v1/me", headers=headers)
+    if perfil.status_code == 200:
+        cuenta = perfil.json()
+        cuenta = cuenta["id"]
+        url_playlists = "https://api.spotify.com/v1/users/"+str(cuenta)+"/playlists"
+    listas = requests.get(url_playlists, headers=headers)
+    if listas.status_code == 200:
+        playlists_usuario = json.loads(listas.text)
+        return template('playlist.html', listas_usuario=playlists_usuario)
+    
+@route('/static/<filepath:path>')
+def server_static(filepath):
+    return static_file(filepath, root='static')
 
 
 port=os.environ["PORT"]
