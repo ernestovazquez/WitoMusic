@@ -92,7 +92,13 @@ def contact():
 
 @app.route('/search')
 def search():
-    return render_template('buscadores.html')
+    if "token_sp" in session:
+        if token_valido():
+            return render_template('buscadores.html')
+        else:
+            return redirect('/')
+    else:
+        return redirect('/spotify')
 
     
 
