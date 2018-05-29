@@ -128,14 +128,6 @@ def search():
                 return redirect('/')
         else:
             return redirect('/spotify')
-        return render_template('buscadores.html')
-
-
-
-
-
-
-
 
 
 port=os.environ["PORT"]
