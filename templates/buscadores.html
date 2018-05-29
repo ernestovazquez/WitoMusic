@@ -1,7 +1,11 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
+	{% if error %}
+	<div class="danger">
+		<p><strong>{{ error }}</strong></p>
+	</div>
+	{% endif %}
 		<form action="/search" method="post">
 			Título:<br>
 			<input type="text" name="titulo"><br>
