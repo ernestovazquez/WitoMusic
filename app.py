@@ -14,7 +14,7 @@ app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
 scope = ['playlist-read-private', 'playlist-read-collaborative']
 token_url = "https://accounts.spotify.com/api/token"
-
+URL_BASE = 'https://api.spotify.com/v1/search'
 
 def token_valido():
     try:
@@ -117,7 +117,8 @@ def search():
                 token = json.loads(session['token_sp'])
                 oauth2 = OAuth2Session(os.environ['client_id'], token = token)
                 headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-                pl_sp = {'q': espacioencanciones(titulo), 'type': 'playlist', 'limit': 1, 'market': None}    
+                pl_sp = {'q': espacioencanciones(titulo), 'type': 'playlist', 'limit': 1, 'market': None}
+                r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
             else:
                 return redirect('/')
         else:
