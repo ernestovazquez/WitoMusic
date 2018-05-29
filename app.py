@@ -131,7 +131,7 @@ def search():
 
 @app.route('/segundaplaylist')
 def segundaplaylist():
-    return render_template("segundaplaylist.html")
+    return render_template("segundaplaylists.html")
 
 @app.route('/creador', methods=['post', 'get'])
 def creador():
