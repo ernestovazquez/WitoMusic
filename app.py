@@ -123,7 +123,6 @@ def search():
                             js_sp = r_sp.json()
                             if len(js_sp['tracks']['items']) != 0:
                                 datos_sp = {'titulo': js_sp['tracks']['items'][0]['external_urls']['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
-                            else:
 
                 
                 return render_template('buscadores.html', datos = datos_sp)
