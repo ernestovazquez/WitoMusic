@@ -106,7 +106,7 @@ def playlist():
         return redirect('/spotify')
 
 
-@app.route('/search')
+@app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == 'GET':
         return render_template('buscadores.html')
