@@ -119,6 +119,17 @@ def search():
                 headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
                 pl_sp = {'q': espacioencanciones(titulo), 'type': 'playlist', 'limit': 1, 'market': None}
                 r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
+                if r_sp.status_code == 200:
+                            js_sp = r_sp.json()
+                            if len(js_sp['tracks']['items']) != 0:
+                                datos_sp = {'titulo': js_sp['tracks']['items'][0]['external_urls']['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
+                            else:
+
+                
+                return render_template('buscadores.html', datos = datos_sp)
+
+
+
             else:
                 return redirect('/')
         else:
