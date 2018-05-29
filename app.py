@@ -129,6 +129,27 @@ def search():
         else:
             return redirect('/spotify')
 
+@app.route('/segundaplaylist')
+def segundaplaylist():
+    return render_template("segundaplaylist.html")
+
+@app.route('/creador', methods=['post', 'get'])
+def creador():
+    if not "id" in session:
+        return redirect('/')
+    if token_valido():
+        token=json.loads(session["token_sp"])
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope_sp)
+        nombre = request.form.get('nombre')
+        desc = request.form.get('desc')
+        public = request.form.get('public')
+        headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
+        payload={'name':nombre, 'description':desc, 'public':public}
+        r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]), data=json.dumps(payload), headers=headers)
+        doc=json.loads(r.content.decode("utf-8"))
+        return redirect('/playlists')
+    else:
+        return redirect('/')
 
 port=os.environ["PORT"]
 app.run('0.0.0.0',int(port), debug=True)
