@@ -32,6 +32,9 @@ def token_valido():
         token_ok = False
     return token_ok
 
+def espacioencanciones(cadena):
+    cad = cadena.replace(' ', '+')
+    return cad
 
 @app.route('/perfil_spotify')
 def info_perfil_spotify():
@@ -104,14 +107,27 @@ def playlist():
 
 
 @app.route('/search')
+
 def search():
     if "token_sp" in session:
         if token_valido():
-            return render_template('buscadores.html')
+            token = json.loads(session['token_sp'])
+            oauth2 = OAuth2Session(os.environ['client_id'], token = token)
+            headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
+            pl_sp = {'q': espacioencanciones(dic_res['titulo']), 'type': 'playlist', 'limit': 1, 'market': None}
+
+
         else:
             return redirect('/')
     else:
         return redirect('/spotify')
+
+
+titulo_form = request.form['titulo']
+
+
+
+
 
 
 port=os.environ["PORT"]
