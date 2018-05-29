@@ -86,9 +86,9 @@ def inicio():
     return render_template('index.html')
 
 
-@app.route('/contact')
-def contact():
-	return render_template('contacto.html')
+@app.route('/encontrada')
+def encontrada():
+	return render_template('noencontrada.html')
 
 
 @app.route('/playlist')
@@ -125,7 +125,7 @@ def search():
                         datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
                         return render_template('buscadores.html', datos = datos_sp)
                 else:
-                    return render_template('noencontrada.html')
+                    return redirect('/encontrada')
             else:
                 return redirect('/')
         else:
