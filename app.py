@@ -109,7 +109,7 @@ def playlist():
 @app.route('/search')
 def search():
     if request.method == 'GET':
-        return render_template('busqueda.html')
+        return render_template('buscadores.html')
     else:
         titulo = request.form['titulo']
         if "token_sp" in session:
@@ -117,13 +117,12 @@ def search():
                 token = json.loads(session['token_sp'])
                 oauth2 = OAuth2Session(os.environ['client_id'], token = token)
                 headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-                pl_sp = {'q': espacioencanciones(titulo), 'type': 'playlist', 'limit': 1, 'market': None}
-    
-    
+                pl_sp = {'q': espacioencanciones(titulo), 'type': 'playlist', 'limit': 1, 'market': None}    
             else:
                 return redirect('/')
         else:
             return redirect('/spotify')
+        return render_template('buscadores.html')
 
 
 
