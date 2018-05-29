@@ -123,7 +123,7 @@ def search():
         return redirect('/spotify')
 
 
-titulo_form = request.form['titulo']
+# titulo_form = request.form['titulo']
 
 
 
