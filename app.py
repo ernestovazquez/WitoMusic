@@ -107,7 +107,7 @@ def search():
         return render_template('buscadores.html', error = None)
     else:
         titulo = request.form['titulo']
-        if titulo_form != '':
+        if titulo != '':
             if "token_sp" in session:
                 if token_valido():
                     token = json.loads(session['token_sp'])
