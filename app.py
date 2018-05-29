@@ -107,10 +107,9 @@ def playlist():
 
 
 @app.route('/search')
-
 def search():
     if request.method == 'GET':
-        return redirect('/search')
+        return render_template('busqueda.html')
     else:
         titulo = request.form['titulo']
         if "token_sp" in session:
