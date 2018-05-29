@@ -112,8 +112,8 @@ def search():
                 if token_valido():
                     token = json.loads(session['token_sp'])
                     oauth2 = OAuth2Session(os.environ['client_id'], token = token)
-                headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']   }
-                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 1,  'market': 'ES'}
+                    headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']   }
+                    pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 1,  'market': 'ES'}
                     r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
                     if r_sp.status_code == 200:
                         js_sp = r_sp.json()
