@@ -121,8 +121,7 @@ def search():
                 r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
                 if r_sp.status_code == 200:
                             js_sp = r_sp.json()
-                            if len(js_sp['tracks']['items']) != 0:
-                                datos_sp = {'titulo': js_sp['tracks']['items'][0]['external_urls']['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
+                            datos_sp = {'titulo': js_sp['tracks']['items'][0]['external_urls']['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
 
                 
                 return render_template('buscadores.html', datos = datos_sp)
