@@ -86,11 +86,6 @@ def inicio():
     return render_template('index.html')
 
 
-@app.route('/encontrada')
-def encontrada():
-	return render_template('noencontrada.html')
-
-
 @app.route('/playlist')
 def playlist():
     if "token_sp" in session:
@@ -124,8 +119,6 @@ def search():
                     if len(js_sp['tracks']['items']) != 0:
                         datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
                         return render_template('buscadores.html', datos = datos_sp)
-                else:
-                    return redirect('/encontrada')
             else:
                 return redirect('/')
         else:
@@ -134,6 +127,7 @@ def search():
 @app.route('/nueva')
 def nueva():
     return render_template("segundaplaylists.html")
+
 
 @app.route('/creador', methods=["GET", "POST"])
 def creador():
