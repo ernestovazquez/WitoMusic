@@ -150,7 +150,7 @@ def creador():
         else:
             return redirect('/')
     else:
-        return redirect('/')
+        return redirect('/spotify')
 
 port=os.environ["PORT"]
 app.run('0.0.0.0',int(port), debug=True)
