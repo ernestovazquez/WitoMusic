@@ -135,7 +135,6 @@ def segundaplaylist():
 
 @app.route('/creador', methods=['post', 'get'])
 def creador():
-   def playlist():
     if "token_sp" in session:
         if token_valido():
             token=json.loads(session["token_sp"])
