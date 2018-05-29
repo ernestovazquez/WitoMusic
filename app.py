@@ -124,6 +124,8 @@ def search():
                     if len(js_sp['tracks']['items']) != 0:
                         datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
                         return render_template('buscadores.html', datos = datos_sp)
+                else:
+                    return render_template('noencontrada.html')
             else:
                 return redirect('/')
         else:
