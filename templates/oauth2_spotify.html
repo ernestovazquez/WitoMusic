@@ -5,9 +5,14 @@
                                 <section id="banner">
 									<div class="content">
 										<h1>Inicia sesión en Spotify para entrar en la aplicación</h1>
-                                        <a href="/perfil_spotify"><button type="button" class="btn btn-primary btn-sm">Iniciar Sesión</button></a>
+										<form action="/perfil_spotify">
+											<input type="submit" value="Iniciar Sesión">
+										</form>
+										<br/>
+										<form action="/">
+                                      		<input type="submit" value="Volver al inicio">
+                                      	</form>
                                         <br/>
-    									<br/><a href="/" class="button">Volver al inicio</a>
 									</div>
 									<span class="image object">
 										<img src="{{url_for('static', filename='images/pic03.jpg')}}" alt="" />
