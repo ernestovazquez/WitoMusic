@@ -131,21 +131,22 @@ def nueva():
 
 @app.route('/creador', methods=["GET", "POST"])
 def creador():
-    if not "id" in session:
-        return redirect('/')
-    if token_valido():
-        token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
-        nombre = request.form.get('nombre')
-        desc = request.form.get('desc')
-        public = request.form.get('public')
-        headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-        payload={'name':nombre, 'description':desc, 'public':public}
-        r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]), data=json.dumps(payload), headers=headers)
-        doc=json.loads(r.content.decode("utf-8"))
-        return redirect('/playlist')
+    if "token_sp" in session:
+        if token_valido():
+            token=json.loads(session["token_sp"])
+            oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+            nombre = request.form.get('nombre')
+            desc = request.form.get('desc')
+            public = request.form.get('public')
+            headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
+            payload={'name':nombre, 'description':desc, 'public':public}
+            r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]), data=json.dumps(payload), headers=headers)
+            doc=json.loads(r.content.decode("utf-8"))
+            return redirect('/playlist')
+        else:
+            return redirect('/')
     else:
-        return redirect('/')
+        return redirect('/spotify')
 
 
 port=os.environ["PORT"]
