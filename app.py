@@ -136,7 +136,7 @@ def crea():
     return render_template("creador.html")
 
 
-@app.route('/creador', methods=['post', 'get'])
+@app.route('/creador', methods=["GET", "POST"])
 def creador():
     if "token_sp" in session:
         if token_valido():
