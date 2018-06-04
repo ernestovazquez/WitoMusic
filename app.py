@@ -104,32 +104,25 @@ def playlist():
 @app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == 'GET':
-        return render_template('buscadores.html', error = None)
+        return render_template('buscadores.html')
     else:
         titulo = request.form['titulo']
-        if titulo != '':
-            if "token_sp" in session:
-                if token_valido():
-                    token = json.loads(session['token_sp'])
-                    oauth2 = OAuth2Session(os.environ['client_id'], token = token)
-                    headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-                    pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 1,  'market': 'ES'}
-                    r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
-                    if r_sp.status_code == 200:
-                        js_sp = r_sp.json()
-                        if len(js_sp['tracks']['items']) != 0:
-                            datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url ': js_sp['tracks']['items'][0]['external_urls']['spotify']}
-                            return render_template('buscadores.html', datos = datos_sp, error = None)
-                        else:
-                            error = "No hay canciones relacionadas con tu búsqueda"
-                            return render_template('buscadores.html', error = error)
-                else:
-                    return redirect('/')
+        if "token_sp" in session:
+            if token_valido():
+                token = json.loads(session['token_sp'])
+                oauth2 = OAuth2Session(os.environ['client_id'], token = token)
+                headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
+                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 1, 'market': 'ES'}
+                r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
+                if r_sp.status_code == 200:
+                    js_sp = r_sp.json()
+                    if len(js_sp['tracks']['items']) != 0:
+                        datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
+                        return render_template('buscadores.html', datos = datos_sp)
             else:
-                return redirect('/spotify')
+                return redirect('/')
         else:
-            error = "Introduce la canción en el cuadro de búsqueda"
-            return render_template('buscadores.html', error = error)
+            return redirect('/spotify')
 
 
 port=os.environ["PORT"]
