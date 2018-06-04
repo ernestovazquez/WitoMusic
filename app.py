@@ -142,7 +142,7 @@ def creador():
         return redirect('/')
     if token_valido():
         token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope_sp)
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
         nombre = request.form.get('nombre')
         desc = request.form.get('desc')
         public = request.form.get('public')
