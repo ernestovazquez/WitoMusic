@@ -112,18 +112,16 @@ def search():
                 token = json.loads(session['token_sp'])
                 oauth2 = OAuth2Session(os.environ['client_id'], token = token)
                 headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 10, 'market': 'ES'}
+                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': '10', 'market': 'ES'}
                 r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
                 if r_sp.status_code == 200:
                     js_sp = r_sp.json()
-                    lista = []
                     if len(js_sp['tracks']['items']) != 0:
-                        for i in js_sp['tracks']:
-                            lista.append({'titulo': i['name'], 'id': i['id']})
-                            error = None
+                        datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
+                        return render_template('buscadores.html', datos = datos_sp)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
-                        return render_template('buscadores.html', datos = lista, error = error)
+                        return render_template('buscadores.html', error = error)
                 else:
                     error = "Debes poner una canción en el cuadro de búsqueda"
                     return render_template('buscadores.html', error = error)
@@ -131,6 +129,7 @@ def search():
                 return redirect('/')
         else:
             return redirect('/spotify')
+
 
 @app.route('/crea')
 def crea():
