@@ -138,7 +138,7 @@ def crea():
 
 @app.route('/creador', methods=['post', 'get'])
 def creador():
-if "token_sp" in session:
+    if "token_sp" in session:
         if token_valido():
             token=json.loads(session["token_sp"])
             oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
