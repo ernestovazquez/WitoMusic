@@ -119,7 +119,7 @@ def search():
                     lista = []
                     if len(js_sp['tracks']['items']) != 0:
                         for i in js_sp['tracks']['items']:
-                            lista.append({'titulo': i['titulo'], 'id': i['id']})
+                            lista.append({'titulo': i['tracks'], 'id': i['id']})
                         error = None    
                     else:
                         error = 'No hay canciones relacionadas con tu búsqueda'
