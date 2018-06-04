@@ -120,8 +120,8 @@ def search():
                         datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
                         return render_template('buscadores.html', datos = datos_sp)
                     else:
-                            error = "No hay canciones relacionadas con tu búsqueda"
-                            return render_template('buscadores.html', error = error)
+                        error = "Debes poner una canción en el cuadro de búsqueda"
+                        return render_template('buscadores.html', error = error)
                 else:
                     error = "No hay canciones relacionadas con tu búsqueda"
                     return render_template('buscadores.html', error = error)
