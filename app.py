@@ -123,7 +123,6 @@ def search():
                         else:
                             error = "No hay canciones relacionadas con tu búsqueda"
                             return render_template('buscadores.html', error = error)
-
                 else:
                     return redirect('/')
             else:
