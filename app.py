@@ -118,7 +118,7 @@ def search():
                     js_sp = r_sp.json()
                     lista = []
                     if len(js_sp['tracks']['items']) != 0:
-                        for i in js_sp['results']:
+                        for i in js_sp['tracks']:
                             lista.append({'titulo': i['name'], 'id': i['id']})
                             error = None
                     else:
