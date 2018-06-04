@@ -123,7 +123,7 @@ def search():
                         error = None    
                     else:
                         error = 'No hay canciones relacionadas con tu búsqueda'
-                    return render_template('buscadores.html', datos = lista, error = error, tipo = tipo)
+                    return render_template('buscadores.html', datos = lista, error = error)
                 else:
                     error = "Debes poner una canción en el cuadro de búsqueda"
                     return render_template('buscadores.html', error = error)
