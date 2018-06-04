@@ -112,7 +112,7 @@ def search():
                 token = json.loads(session['token_sp'])
                 oauth2 = OAuth2Session(os.environ['client_id'], token = token)
                 headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'market': 'ES'}
+                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 2, 'market': 'ES'}
                 r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
                 if r_sp.status_code == 200:
                     js_sp = r_sp.json()
@@ -156,7 +156,7 @@ def creador():
 
 
 @app.route('/resultado/<idc>')
-def saludo(idc):
+def result(idc):
     if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
