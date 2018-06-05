@@ -156,7 +156,6 @@ def creador():
         return redirect('/spotify')
 
 
-
 @app.route('/canciones/<idc>')
 def saludo(idc):
     if token_valido():
@@ -167,6 +166,7 @@ def saludo(idc):
         return render_template("canciones.html", datos=doc)
     else:
         return redirect('/spotify')
+
 
 port=os.environ["PORT"]
 app.run('0.0.0.0',int(port), debug=True)
