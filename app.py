@@ -112,12 +112,12 @@ def search():
                 token = json.loads(session['token_sp'])
                 oauth2 = OAuth2Session(os.environ['client_id'], token = token)
                 headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 10, 'market': 'ES'}
+                pl_sp = {'q': espacioencanciones(titulo), 'type': 'track', 'limit': 5, 'market': 'ES'}
                 r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
                 if r_sp.status_code == 200:
                     js_sp = r_sp.json()
                     if len(js_sp['tracks']['items']) != 0:
-                        datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
+                        datos_sp = {'titulo': js_sp['tracks']['items'][5]['name'], 'url': js_sp['tracks']['items'][5]['external_urls']['spotify']}
                         return render_template('buscadores.html', datos = datos_sp)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
@@ -149,24 +149,11 @@ def creador():
             payload={'name':nombre, 'description':desc, 'public':public}
             r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]), data=json.dumps(payload), headers=headers)
             doc=json.loads(r.content.decode("utf-8"))
-            return redirect('/resultado/<idc>')
+            return redirect('/playlist')
         else:
             return redirect('/')
     else:
         return redirect('/spotify')
-
-
-@app.route('/resultado/<idc>')
-def result(idc):
-    if token_valido():
-        token=json.loads(session["token_sp"])
-        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc))
-        doc=json.loads(r.content.decode("utf-8"))
-        return render_template("resultado.html", datos=doc)
-    else:
-        return redirect('/spotify')
-
 
 
 port=os.environ["PORT"]
