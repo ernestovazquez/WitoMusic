@@ -149,7 +149,7 @@ def creador():
             payload={'name':nombre, 'description':desc, 'public':public}
             r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]), data=json.dumps(payload), headers=headers)
             doc=json.loads(r.content.decode("utf-8"))
-            return redirect('/playlist')
+            return redirect('/resultado/<idc>')
         else:
             return redirect('/')
     else:
