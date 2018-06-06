@@ -12,7 +12,7 @@ app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 redirect_uri = 'https://witomusic.herokuapp.com/callback'
-scope = ['playlist-read-private', 'playlist-read-collaborative', 'user-read-private user-read-email']
+scope = ['playlist-read-private', 'playlist-read-collaborative']
 token_url = "https://accounts.spotify.com/api/token"
 URL_BASE = 'https://api.spotify.com/v1/search'
 
