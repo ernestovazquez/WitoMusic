@@ -121,6 +121,7 @@ def search():
                         for i in js_sp['tracks']['items']:
                             lista.append({'titulo': i['name'], 'id': i['id']})
                             error = None
+                        return render_template('buscadores.html', datos = lista, error = error)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
                         return render_template('buscadores.html', datos = lista, error = error)
