@@ -116,12 +116,14 @@ def search():
                 r_sp = oauth2.get(URL_BASE, params = pl_sp, headers = headers)    
                 if r_sp.status_code == 200:
                     js_sp = r_sp.json()
+                    lista = []
                     if len(js_sp['tracks']['items']) != 0:
-                        datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
-                        return render_template('buscadores.html', datos = datos_sp)
+                        for i in js['tracks']:
+                            lista.append({'titulo': i['name'], 'id': i['id']})
+                            error = None
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
-                        return render_template('buscadores.html', error = error)
+                        return render_template('buscadores.html', datos = lista, error = error)
                 else:
                     error = "Debes poner una canción en el cuadro de búsqueda"
                     return render_template('buscadores.html', error = error)
