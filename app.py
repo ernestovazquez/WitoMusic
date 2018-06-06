@@ -119,8 +119,10 @@ def search():
                 if r_sp.status_code == 200:
                     js_sp = r_sp.json()
                     if len(js_sp['tracks']['items']) != 0:
-                        datos_sp = {'titulo': js_sp['tracks']['items'][0]['name'], 'url': js_sp['tracks']['items'][0]['external_urls']['spotify']}
-                        return render_template('buscadores.html', datos = datos_sp)
+                        lista = []
+                        for i in js_sp['tracks']['items']:
+                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify']})
+                        return render_template('buscadores.html', datos = lista)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
                         return render_template('buscadores.html', error = error)

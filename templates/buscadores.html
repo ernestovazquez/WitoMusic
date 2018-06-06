@@ -13,6 +13,6 @@
 		</form>
 
 		{% for i in datos %}
-		<a href="{{ datos['url'] }}">{{ datos['titulo'] }}</a><br>
+		<a href="{{ i['url'] }}">{{ i['titulo'] }}</a><br>
 		{% endfor %}
 {% endblock %}
