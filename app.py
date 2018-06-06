@@ -119,7 +119,7 @@ def search():
                     lista = []
                     if len(js_sp['tracks']['items']) != 0:
                         for i in js_sp['tracks']['items']:
-                            lista.append({'titulo': i['name'], 'id': i['id']})
+                            lista.append({'titulo': i['name'], 'url': i['external_urls']['spotify']})
                             error = None
                         return render_template('buscadores.html', datos = lista, error = error)
                     else:
