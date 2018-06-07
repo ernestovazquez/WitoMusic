@@ -13,7 +13,7 @@
 		</form>
 
 		{% for i in datos %}
-    	<p><a href="/seleccionar/{{i['uri']}}">Seleccionar playlist »</a>
 		<a href="{{ i['url'] }}">{{ i['titulo'] }}</a><br>
+    	<p><a href="/seleccionar/{{i['uri']}}">Seleccionar playlist »</a>
 		{% endfor %}
 {% endblock %}
