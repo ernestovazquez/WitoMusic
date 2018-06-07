@@ -3,7 +3,7 @@
 {% block content %}
 	<h2>Tus playlists</h2>
 	{% for i in datos["items"] -%}
-		<p><strong>Playlist: </strong><a href="/añadir/{{idc=i['id']]}}/{{uri}}"><strong>{{i["name"]}}</strong></a></p>
+		<p><strong>Playlist: </strong><a href="/añadir/{{i["id"]}}/{{uri}}"><strong>{{i["name"]}}</strong></a></p>
     {% endfor %}
     <br/>
 {% endblock %}
