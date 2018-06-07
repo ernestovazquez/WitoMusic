@@ -3,6 +3,6 @@
 {% block content %}
 		{% for i in datos["items"] -%}
     	<p><strong>Nombre: </strong><strong>{{i["name"]}}</strong></p>
-    	<p><iframe src="https://open.spotify.com/embed?uri={{i['uri'}}" width="250" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></p>
+    	<p><iframe src="https://open.spotify.com/embed?uri={{i['uri']}}" width="250" height="330" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></p>
     {% endfor %}
 {% endblock %}
