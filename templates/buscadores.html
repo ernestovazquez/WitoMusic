@@ -14,7 +14,7 @@
 
 		{% for i in datos %}
     	<p><a href="/seleccionar/{{i['uri']}}">Seleccionar playlist »</a>
-		<a href="{{url_for('añadir',idc=i['id'])}}" class="button alt">Seleccionar playlist »</a></div>
+		<a href="{{url_for('añadir',idc=i['id'], uris=i['uri'])}}" class="button alt">Seleccionar playlist »</a></div>
 		{% endfor %}
 {% endblock %}
 
