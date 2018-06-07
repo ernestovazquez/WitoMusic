@@ -134,12 +134,12 @@ def search():
         else:
             return redirect('/spotify')
 
-@app.route('/songs/<idspotify>')
-def songss(idspotify):
+@app.route('/songs/<idc>')
+def songss(idc):
     if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idspotify))
+        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc))
         doc=json.loads(r.content.decode("utf-8"))
         return render_template("songs.html", datos=doc)
     else:
@@ -160,7 +160,7 @@ def enplaylist(uri):
         return redirect('/')
 
 
-@app.route('/añadir/<idspotify>/<uri>', methods=["GET", "POST"])
+@app.route('/añadir/<idc>/<uri>', methods=["GET", "POST"])
 def añadir(uri):
     if not "id" in session:
         return redirect('/')
@@ -169,7 +169,7 @@ def añadir(uri):
         oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
         headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
         payload={'uris':uri}
-        r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idspotify), params=payload, headers=headers)
+        r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc), params=payload, headers=headers)
         doc=json.loads(r.content.decode("utf-8"))
         return render_template("playlist.html", datos=doc)
     else:
