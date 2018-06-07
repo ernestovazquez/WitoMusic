@@ -160,7 +160,7 @@ def añadir(uri):
         payload={'uris':uri}
         r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc), params=payload, headers=headers)
         doc=json.loads(r.content.decode("utf-8"))
-        return render_template("playlist.html", datos=doc)
+        return render_template("bien.html", datos=doc)
     else:
         return redirect('/')
 
