@@ -134,8 +134,8 @@ def search():
         else:
             return redirect('/spotify')
 
-@app.route('/songs/<idc>')
-def songss(idc):
+@app.route('/songs/<id>')
+def songss(id):
     if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
@@ -160,7 +160,7 @@ def enplaylist(uri):
         return redirect('/')
 
 
-@app.route('/añadir/<idc>/<uri>', methods=["GET", "POST"])
+@app.route('/añadir/<id>/<uri>', methods=["GET", "POST"])
 def añadir(uri):
     if not "id" in session:
         return redirect('/')
