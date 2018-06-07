@@ -135,7 +135,7 @@ def search():
             return redirect('/spotify')
 
 @app.route('/songs/<idc>')
-def songs(idc):
+def songss(idc):
     if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
@@ -147,7 +147,7 @@ def songs(idc):
 
 
 @app.route('/seleccionar/<uri>', methods=["GET", "POST"])
-def seleccionar(uri):
+def enplaylist(uri):
     if not "id" in session:
         return redirect('/')
     if token_valido():
