@@ -150,7 +150,7 @@ def songss(idc):
 def enplaylist(uri):
     if not "id" in session:
         return redirect('/')
-    if token_valido():
+    elif token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
@@ -164,7 +164,7 @@ def enplaylist(uri):
 def añadir(idc, uri):
     if not "id" in session:
         return redirect('/')
-    if token_valido():
+    elif token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
         headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
