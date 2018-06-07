@@ -162,7 +162,7 @@ def añadir(uri):
         doc=json.loads(r.content.decode("utf-8"))
         return render_template("bien.html", datos=doc)
     else:
-        return redirect('/')
+        return redirect('/')    
 
 
 @app.route('/crea')
