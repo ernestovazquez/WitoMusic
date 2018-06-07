@@ -14,6 +14,7 @@
 
 		{% for i in datos %}
 		<a href="{{ i['url'] }}">{{ i['titulo'] }}</a><br>
+		</br>
     	<p><a href="/seleccionar/{{i["uri"]}}">Seleccionar playlist »</a>
 		{% endfor %}
 {% endblock %}
