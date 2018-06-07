@@ -135,6 +135,36 @@ def search():
             return redirect('/spotify')
 
 
+@app.route('/seleccionar/<uri>', methods=["GET", "POST"])
+def enplaylist(uri):
+    if not "id" in session:
+        return redirect('/')
+    if token_valido():
+        token=json.loads(session["token_sp"])
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token)
+        r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
+        doc=json.loads(r.content.decode("utf-8"))
+        return render_template("seleccionar.html", datos=doc, uri=uri)
+    else:
+        return redirect('/')
+
+
+@app.route('/añadir/<idc>/<uri>', methods=["GET", "POST"])
+def añadir(idc, uri):
+    if not "id" in session:
+        return redirect('/')
+    if token_valido():
+        token=json.loads(session["token_sp"])
+        oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+        headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
+        payload={'uris':uri}
+        r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc), params=payload, headers=headers)
+        doc=json.loads(r.content.decode("utf-8"))
+        return render_template("playlist.html", datos=doc)
+    else:
+        return redirect('/')
+
+
 @app.route('/crea')
 def crea():
     return render_template("creador.html")
