@@ -14,6 +14,6 @@
 
 		{% for i in datos %}
 		<a href="{{ i['url'] }}">{{ i['titulo'] }}</a><br>
-    	<p><iframe src="https://open.spotify.com/embed?uri={{i["uri"]}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe><a href="/seleccionar/{{i["uri"]}}">Seleccionar playlist para añadirla »</a>
+    	<p><iframe src="https://open.spotify.com/embed?uri={{i["uri"]}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe><a href="/seleccionar/{{i["uri"]}}">Seleccionar playlist »</a>
 		{% endfor %}
 {% endblock %}
