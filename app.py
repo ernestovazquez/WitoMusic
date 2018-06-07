@@ -149,7 +149,7 @@ def enplaylist(uri):
         return redirect('/')
 
 
-@app.route('/añadir/<uri>', methods=["GET", "POST"])
+@app.route('/añadir/<id>/<uri>', methods=["GET", "POST"])
 def añadir(uri):
     if not "id" in session:
         return redirect('/')
