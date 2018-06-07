@@ -160,7 +160,7 @@ def enplaylist(uri):
         return redirect('/')
 
 
-@app.route('/añadir/<idc>/<uri>', methods=["GET", "POST"])
+@app.route('/añadir/<uri>', methods=["GET", "POST"])
 def añadir(uri):
     if not "id" in session:
         return redirect('/')
@@ -168,7 +168,7 @@ def añadir(uri):
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
         headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-        payload={'id':id, 'uris':uri}
+        payload={'uris':uri}
         r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc), params=payload, headers=headers)
         doc=json.loads(r.content.decode("utf-8"))
         return render_template("playlist.html", datos=doc)
