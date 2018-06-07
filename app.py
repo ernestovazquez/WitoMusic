@@ -161,7 +161,7 @@ def enplaylist(uri):
 
 
 @app.route('/añadir/<idc>/<uri>', methods=["GET", "POST"])
-def añadir(uri):
+def añadir(idc, uri):
     if not "id" in session:
         return redirect('/')
     if token_valido():
