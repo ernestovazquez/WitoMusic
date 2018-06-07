@@ -175,6 +175,7 @@ def añadir(uri):
     else:
         return redirect('/')
 
+
 @app.route('/crea')
 def crea():
     return render_template("creador.html")
