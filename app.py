@@ -149,6 +149,7 @@ def añadiraplaylist(uri):
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
+        doc=json.loads(r.content.decode("utf-8"))
         return render_template("seleccionar.html", datos=doc, uri=uri)
     else:
         return redirect('/')
