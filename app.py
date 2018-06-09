@@ -121,7 +121,7 @@ def search():
                     if len(js_sp['tracks']['items']) != 0:
                         lista = []
                         for i in js_sp['tracks']['items']:
-                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify']})
+                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify'],'uri':i['external_urls']['uri']})
                         return render_template('buscadores.html', datos = lista)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
@@ -139,12 +139,10 @@ def search():
 def añadiraplaylist(uri):
     if not "id" in session:
         return redirect('/')
-
     if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
-        doc=json.loads(r.content.decode("utf-8"))
         return render_template("selecionar.html", datos=doc, uri=uri)
     else:
         return redirect('/')
