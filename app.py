@@ -165,7 +165,8 @@ def añadir(playlist_id, uri):
         headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
         payload={'uris':uri}
         r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], playlist_id), params=payload, headers=headers)
-        return render_template("bien.html", datos=doc)
+        doc=json.loads(r.content.decode("utf-8"))
+        return redirect('/playlist')
     else:
         return redirect('/')
 
