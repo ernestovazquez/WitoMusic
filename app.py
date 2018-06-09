@@ -121,7 +121,7 @@ def search():
                     if len(js_sp['tracks']['items']) != 0:
                         lista = []
                         for i in js_sp['tracks']['items']:
-                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify'],'uri':i['external_urls']['uri']})
+                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify'],'uri':i['uri']})
                         return render_template('buscadores.html', datos = lista)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
