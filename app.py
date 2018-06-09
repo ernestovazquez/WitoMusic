@@ -97,7 +97,7 @@ def playlist():
             r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
             lista2 = []
             if r.status_code == 200:
-                js=r.js()
+                js=r.json()
                 for i in js['items']:
                     lista2.append({'playlist_id':i['id'], 'name':i['name'], 'uri':i['uri']})
                 return render_template("playlist.html", datos=lista2)
