@@ -99,7 +99,7 @@ def playlist():
             if r.status_code == 200:
                 js=r.json()
                 for i in js['items']:
-                    lista2.append({'playlist_id':i['id'], 'name':i['name'], 'uri':i['uri']})
+                    lista2.append({'playlist_id':i['id'], 'name':i['name'], 'uri_pl':i['uri']})
                 return render_template("playlist.html", datos=lista2)
             else:
                 return redirect('/')
@@ -150,7 +150,7 @@ def añadiraplaylist(uri):
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
         doc=json.loads(r.content.decode("utf-8"))
-        return render_template("seleccionar.html", datos=doc, uri=uri)
+        return render_template("seleccionar.html", datos=doc)
     else:
         return redirect('/')
 
