@@ -95,8 +95,14 @@ def playlist():
             token=json.loads(session["token_sp"])
             oauth2 = OAuth2Session(os.environ["client_id"], token=token)
             r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
-            doc=json.loads(r.content.decode("utf-8"))
-            return render_template("playlist.html", datos=doc)
+            lista2 = []
+            if r.status_code == 200:
+                json=r.json()
+                for i in json['items']:
+                    lista2.append({'playlist_id':i['id'], 'name':i['name'], 'uri':i['uri']})
+                return render_template("playlist.html", datos=lista2)
+            else:
+                return redirect('/')
         else:
             return redirect('/')
     else:
