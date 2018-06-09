@@ -143,7 +143,6 @@ def añadiraplaylist(uri):
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token)
         r = oauth2.get('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]))
-        doc=json.loads(r.content.decode("utf-8"))
         return render_template("selecionar.html", datos=doc, uri=uri)
     else:
         return redirect('/')
@@ -159,7 +158,6 @@ def añadir(idc, uri):
         headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
         payload={'uris':uri}
         r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], idc), params=payload, headers=headers)
-        doc=json.loads(r.content.decode("utf-8"))
         return redirect('/spotify')
     else:
         return redirect('/')
