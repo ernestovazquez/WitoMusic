@@ -141,7 +141,7 @@ def search():
             return redirect('/spotify')
 
 
-@app.route('/selecionar/<uri>', methods=["post", "get"])
+@app.route('/seleccionar/<uri>', methods=["GET", "POST"])
 def añadiraplaylist(uri):
     if not "id" in session:
         return redirect('/')
