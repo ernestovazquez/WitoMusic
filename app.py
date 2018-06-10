@@ -134,7 +134,7 @@ def creador():
     else:
         return redirect('/spotify')
 
-        
+
 @app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == 'GET':
@@ -153,7 +153,7 @@ def search():
                     if len(js_sp['tracks']['items']) != 0:
                         lista = []
                         for i in js_sp['tracks']['items']:
-                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify'],'uri':i['uri']})
+                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify'],'uri_tracks':i['uri']})
                         return render_template('buscadores.html', datos = lista)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
@@ -167,8 +167,8 @@ def search():
             return redirect('/spotify')
 
 
-@app.route('/seleccionar/<uri>', methods=["GET", "POST"])
-def añadiraplaylist(uri):
+@app.route('/seleccionar/<uri_tracks>', methods=["GET", "POST"])
+def añadiraplaylist(uri_tracks):
     if not "id" in session:
         return redirect('/')
     if token_valido():
@@ -181,8 +181,8 @@ def añadiraplaylist(uri):
         return redirect('/')
 
 
-@app.route('/añadir/<playlist_id>/<uri>', methods=["GET", "POST"])
-def añadir(playlist_id, uri):
+@app.route('/añadir/<playlist_id>/<uri_tracks>', methods=["GET", "POST"])
+def añadir(playlist_id, uri_tracks):
     if not "id" in session:
         return redirect('/')
     if token_valido():
