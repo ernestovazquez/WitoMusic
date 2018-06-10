@@ -109,7 +109,6 @@ def playlist():
     else:
         return redirect('/spotify')
 
-
 @app.route('/crea')
 def crea():
     return render_template("creador.html")
@@ -134,7 +133,7 @@ def creador():
     else:
         return redirect('/spotify')
 
-
+        
 @app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == 'GET':
@@ -153,7 +152,7 @@ def search():
                     if len(js_sp['tracks']['items']) != 0:
                         lista = []
                         for i in js_sp['tracks']['items']:
-                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify'],'uri_tracks':i['uri']})
+                            lista.append({'titulo':i['name'], 'url':i['external_urls']['spotify'],'uri':i['uri']})
                         return render_template('buscadores.html', datos = lista)
                     else:
                         error = "No hay canciones relacionadas con tu búsqueda"
@@ -167,8 +166,8 @@ def search():
             return redirect('/spotify')
 
 
-@app.route('/seleccionar/<uri_tracks>', methods=["GET", "POST"])
-def añadiraplaylist(uri_tracks):
+@app.route('/seleccionar/<uri>', methods=["GET", "POST"])
+def añadiraplaylist(uri):
     if not "id" in session:
         return redirect('/')
     if token_valido():
@@ -181,15 +180,15 @@ def añadiraplaylist(uri_tracks):
         return redirect('/')
 
 
-@app.route('/añadir/<playlist_id>/<uri_tracks>', methods=["GET", "POST"])
-def añadir(playlist_id, uri_tracks):
+@app.route('/añadir/<playlist_id>/<uri>', methods=["GET", "POST"])
+def añadir(playlist_id, uri):
     if not "id" in session:
         return redirect('/')
     if token_valido():
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
         headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-        payload={'uris':uri_tracks}
+        payload={'uris':uri}
         r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], playlist_id), params=payload, headers=headers)
         doc=json.loads(r.content.decode("utf-8"))
         return redirect('/playlist')
