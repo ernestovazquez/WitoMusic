@@ -189,7 +189,7 @@ def añadir(playlist_id, uri_tracks):
         token=json.loads(session["token_sp"])
         oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
         headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-        payload={'uris':uri}
+        payload={'uris':uri_tracks}
         r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists/{}/tracks' .format(session["id"], playlist_id), params=payload, headers=headers)
         doc=json.loads(r.content.decode("utf-8"))
         return redirect('/playlist')
