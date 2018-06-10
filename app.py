@@ -16,6 +16,7 @@ scope = 'user-library-read user-read-private user-read-email playlist-read-priva
 token_url = "https://accounts.spotify.com/api/token"
 URL_BASE = 'https://api.spotify.com/v1/search'
 
+
 def token_valido():
     try:
         token=json.loads(session["token_sp"])
@@ -109,6 +110,31 @@ def playlist():
         return redirect('/spotify')
 
 
+@app.route('/crea')
+def crea():
+    return render_template("creador.html")
+
+
+@app.route('/creador', methods=["GET", "POST"])
+def creador():
+    if "token_sp" in session:
+        if token_valido():
+            token=json.loads(session["token_sp"])
+            oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+            nombre = request.form.get('nombre')
+            desc = request.form.get('desc')
+            public = request.form.get('public')
+            headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
+            payload={'name':nombre, 'description':desc, 'public':public}
+            r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]), data=json.dumps(payload), headers=headers)
+            doc=json.loads(r.content.decode("utf-8"))
+            return redirect('/playlist')
+        else:
+            return redirect('/')
+    else:
+        return redirect('/spotify')
+
+        
 @app.route('/search', methods=["GET", "POST"])
 def search():
     if request.method == 'GET':
@@ -169,31 +195,6 @@ def añadir(playlist_id, uri):
         return redirect('/playlist')
     else:
         return redirect('/')
-
-
-@app.route('/crea')
-def crea():
-    return render_template("creador.html")
-
-
-@app.route('/creador', methods=["GET", "POST"])
-def creador():
-    if "token_sp" in session:
-        if token_valido():
-            token=json.loads(session["token_sp"])
-            oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
-            nombre = request.form.get('nombre')
-            desc = request.form.get('desc')
-            public = request.form.get('public')
-            headers = {'Accept': 'application/json', 'Content-Type': 'application-json', 'Authorization': 'Bearer ' + session['token_sp']}
-            payload={'name':nombre, 'description':desc, 'public':public}
-            r = oauth2.post('https://api.spotify.com/v1/users/{}/playlists' .format(session["id"]), data=json.dumps(payload), headers=headers)
-            doc=json.loads(r.content.decode("utf-8"))
-            return redirect('/playlist')
-        else:
-            return redirect('/')
-    else:
-        return redirect('/spotify')
 
 
 port=os.environ["PORT"]
