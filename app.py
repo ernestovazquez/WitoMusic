@@ -109,6 +109,7 @@ def playlist():
     else:
         return redirect('/spotify')
 
+
 @app.route('/crea')
 def crea():
     return render_template("creador.html")
